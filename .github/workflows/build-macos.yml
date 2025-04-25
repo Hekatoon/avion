@@ -1,12 +1,11 @@
+# .github/workflows/build-macos.yml
 name: Build macOS App
 
-on:
-  workflow_dispatch:
+on: [workflow_dispatch]
 
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -25,13 +24,8 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --add-data "recipes.json:." Choix_cocktails.py
 
-      - name: Zip the .app
-        run: |
-          ditto -c -k --sequesterRsrc --keepParent dist/Choix_cocktails.app ChoixCocktails-macos.zip
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload macOS app artifact
+        uses: actions/upload-artifact@v1
         with:
           name: choix-cocktails-macos
-          path: ChoixCocktails-macos.zip
-
+          path: dist/Choix_cocktails.app
