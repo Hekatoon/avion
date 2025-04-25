@@ -30,7 +30,7 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent dist/Choix_cocktails.app ChoixCocktails-macos.zip
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: choix-cocktails-macos
           path: ChoixCocktails-macos.zip
